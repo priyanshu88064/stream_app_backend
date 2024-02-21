@@ -1,16 +1,10 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace Stream_backend.Entities
+namespace Stream_backend.DTOs
 {
-    public record Video
+    public record CreateVideoDto
     {
-        [BsonId]
-        public Guid Id {get;set;}
         public Guid Publisher {get;set;}
         public string Title {get;set;}
         public string Duration {get;set;}
         public string Thumbnail {get;set;}
-
     }
 }

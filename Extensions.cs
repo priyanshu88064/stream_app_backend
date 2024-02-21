@@ -10,7 +10,19 @@ namespace Stream_backend
             return new StreamerDto {
                 Id = streamer.Id,
                 Username = streamer.Username,
-                Name = streamer.Name
+                Name = streamer.Name,
+                Videos = streamer.Videos
+            };
+        }
+
+        public static VideoDto AsDto(this Video video)
+        {
+            return new VideoDto {
+                Id = video.Id,
+                Title = video.Title,
+                Publisher = video.Publisher,
+                Duration = video.Duration,
+                Thumbnail = video.Thumbnail
             };
         }
     }

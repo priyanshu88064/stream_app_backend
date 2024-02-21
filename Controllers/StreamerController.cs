@@ -42,7 +42,8 @@ namespace Stream_backend.Controllers
             streamer.CreateStreamer(new Streamer {
                 Id = Guid.NewGuid(),
                 Name = newStreamer.Name,
-                Username = newStreamer.Username
+                Username = newStreamer.Username,
+                Videos = []
             });
         }
     }

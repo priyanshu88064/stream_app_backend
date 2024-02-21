@@ -8,6 +8,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers(); 
 builder.Services.AddSingleton<IStreamerModel,StreamerModel>();
 builder.Services.AddSingleton<IVideoModel,VideoModel>();
+builder.Services.AddSingleton<IGamesModel,GamesModel>();
 
 //mongodb services
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection(nameof(MongoDB)));

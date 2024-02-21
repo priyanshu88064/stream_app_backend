@@ -31,5 +31,14 @@ namespace Stream_backend.Model
         {
             streamerCollection.InsertOne(newStreamer);
         }
+
+        public void AddVideo(Guid publisher,Guid video)
+        {
+
+            streamerCollection.UpdateOne(
+                Builders<Streamer>.Filter.Eq("Id",publisher),
+                Builders<Streamer>.Update.Push("Videos",video)
+            );
+        }
     }
 }
