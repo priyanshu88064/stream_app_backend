@@ -17,6 +17,11 @@ namespace Stream_backend.Model
             videoCollection = database.GetCollection<Video>(CollectionName);
         }
 
+        public IEnumerable<Video> GetVideos()
+        {
+            return videoCollection.Find(new BsonDocument()).ToList();
+        }
+
         public void CreateVideo(Video video)
         {
             videoCollection.InsertOne(video);

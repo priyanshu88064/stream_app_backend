@@ -7,7 +7,7 @@ namespace Stream_backend.Controllers
 {
     [ApiController]
     [Route("games")]
-    public class GamesController
+    public class GamesController:ControllerBase
     {
         private readonly IGamesModel games;
 

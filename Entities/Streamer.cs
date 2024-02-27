@@ -7,6 +7,7 @@ namespace Stream_backend.Entities
     {   
         [BsonId]
         public Guid Id {get;set;}
+        public Guid Live {get;set;}
         public string Username {get;set;}
         public string Name {get;set;}
         public int Followers {get;set;}

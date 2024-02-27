@@ -9,6 +9,7 @@ namespace Stream_backend
         {
             return new StreamerDto {
                 Id = streamer.Id,
+                Live = streamer.Live,
                 Username = streamer.Username,
                 Name = streamer.Name,
                 Videos = streamer.Videos

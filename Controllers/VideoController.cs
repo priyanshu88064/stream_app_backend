@@ -7,7 +7,7 @@ namespace Stream_backend.Controllers
 {
     [ApiController]
     [Route("video")]
-    public class VideoController
+    public class VideoController:ControllerBase
     {
         private readonly IVideoModel video;
         private readonly IStreamerModel streamer;
@@ -19,10 +19,29 @@ namespace Stream_backend.Controllers
         }
 
         [HttpGet]
-        [Route("{publisher}")]
-        public IEnumerable<Video> GetVideosByPublisher(Guid publisher)
+        public IEnumerable<VideoDto> GetVideos()
         {
-            return video.GetVideosByPublisher(publisher);
+            return video.GetVideos().Select(item => new VideoDto{
+                Id = item.Id,
+                Publisher = item.Publisher,
+                Title = item.Title,
+                Duration = item.Duration,
+                Thumbnail = item.Thumbnail
+            });
+        }
+
+
+        [HttpGet]
+        [Route("{publisher}")]
+        public IEnumerable<VideoDto> GetVideosByPublisher(Guid publisher)
+        {
+            return video.GetVideosByPublisher(publisher).Select(item => new VideoDto{
+                Id = item.Id,
+                Publisher = item.Publisher,
+                Title = item.Title,
+                Duration = item.Duration,
+                Thumbnail = item.Thumbnail
+            });
         }
 
         [HttpPost]

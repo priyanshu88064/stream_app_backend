@@ -41,6 +41,7 @@ namespace Stream_backend.Controllers
         {
             streamer.CreateStreamer(new Streamer {
                 Id = Guid.NewGuid(),
+                Live = Guid.Empty,
                 Name = newStreamer.Name,
                 Username = newStreamer.Username,
                 Videos = []

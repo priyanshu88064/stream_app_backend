@@ -3,12 +3,25 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("*");
+                      });
+});
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers(); 
 builder.Services.AddSingleton<IStreamerModel,StreamerModel>();
 builder.Services.AddSingleton<IVideoModel,VideoModel>();
 builder.Services.AddSingleton<IGamesModel,GamesModel>();
+builder.Services.AddSingleton<ILiveModel,LiveModel>();
 
 //mongodb services
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection(nameof(MongoDB)));
@@ -23,6 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(MyAllowSpecificOrigins);
 app.UseHttpsRedirection();
 app.MapControllers(); 
 
