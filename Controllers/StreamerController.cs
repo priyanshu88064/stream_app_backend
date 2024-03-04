@@ -23,11 +23,11 @@ namespace Stream_backend.Controllers
         }
 
         [HttpGet]
-        [Route("{username}")]
-        public ActionResult<StreamerDto> GetStreamerByUsername(string username)
+        [Route("{email}")]
+        public ActionResult<StreamerDto> GetStreamerByEmail(string email)
         {
 
-            var result =  streamer.GetStreamerByUsername(username);
+            var result =  streamer.GetStreamerByEmail(email);
 
             if(result==null){
                 return NotFound();
@@ -37,13 +37,16 @@ namespace Stream_backend.Controllers
         }
 
         [HttpPost]
-        public void CreateStreamer(CreateStreamerDto newStreamer)
+        public string CreateStreamer(CreateStreamerDto newStreamer)
         {
-            streamer.CreateStreamer(new Streamer {
+            return streamer.CreateStreamer(new Streamer {
                 Id = Guid.NewGuid(),
                 Live = Guid.Empty,
                 Name = newStreamer.Name,
-                Username = newStreamer.Username,
+                Email = newStreamer.Email,
+                ProfileImg = newStreamer.ProfileImg,
+                Followers = 0,
+                Following = 0,
                 Videos = []
             });
         }

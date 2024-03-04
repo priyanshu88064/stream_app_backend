@@ -10,6 +10,7 @@ namespace Stream_backend.Entities
         public Guid Live {get;set;}
         public string Username {get;set;}
         public string Name {get;set;}
+        public string Email {get;set;}
         public int Followers {get;set;}
         public int Following {get;set;}
         public string ProfileImg {get;set;}

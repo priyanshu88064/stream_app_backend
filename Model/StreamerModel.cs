@@ -22,14 +22,22 @@ namespace Stream_backend.Model
             return streamerCollection.Find(new BsonDocument()).ToList();
         }
 
-        public Streamer GetStreamerByUsername(string username)
+        public Streamer GetStreamerByEmail(string email)
         {
-            return streamerCollection.Find(res => res.Username==username).FirstOrDefault();
+            return streamerCollection.Find(res => res.Email==email).FirstOrDefault();
         }
 
-        public void CreateStreamer(Streamer newStreamer)
+        public string CreateStreamer(Streamer newStreamer)
         {
-            streamerCollection.InsertOne(newStreamer);
+            if(GetStreamerByEmail(newStreamer.Email)==null)
+            {
+                streamerCollection.InsertOne(newStreamer);
+                return "Account created successfully";
+            }
+            else
+            {
+                return "Email already registered";
+            }
         }
 
         public void AddVideo(Guid publisher,Guid video)
