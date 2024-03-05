@@ -6,7 +6,7 @@ namespace Stream_backend.Model
     {
         public IEnumerable<Streamer> GetStreamers();
         public Streamer GetStreamerByEmail(string email);
-        public string CreateStreamer(Streamer newStreamer);
+        public Streamer CreateStreamer(Streamer newStreamer);
         public void AddVideo(Guid publisher,Guid video);
         public void AddLive(Guid live,Guid publisher);
     }

@@ -26,5 +26,10 @@ namespace Stream_backend.Model
         {
             return liveCollection.Find(new BsonDocument()).ToList();
         }
+
+        public void DeleteLive(Guid id)
+        {
+            liveCollection.DeleteOne(Builders<Live>.Filter.Eq("Publisher",id));
+        }
     }
 }

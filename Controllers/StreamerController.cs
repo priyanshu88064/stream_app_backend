@@ -37,9 +37,10 @@ namespace Stream_backend.Controllers
         }
 
         [HttpPost]
-        public string CreateStreamer(CreateStreamerDto newStreamer)
+        public StreamerDto CreateStreamer(CreateStreamerDto newStreamer)
         {
-            return streamer.CreateStreamer(new Streamer {
+
+            Streamer tempstreamer = new Streamer {
                 Id = Guid.NewGuid(),
                 Live = Guid.Empty,
                 Name = newStreamer.Name,
@@ -48,7 +49,20 @@ namespace Stream_backend.Controllers
                 Followers = 0,
                 Following = 0,
                 Videos = []
-            });
+            };
+
+            tempstreamer = streamer.CreateStreamer(tempstreamer);
+
+            return new StreamerDto{
+                Id = tempstreamer.Id,
+                Live = tempstreamer.Live,
+                Name = tempstreamer.Name,
+                Email = tempstreamer.Email,
+                ProfileImg = tempstreamer.ProfileImg,
+                Followers = tempstreamer.Followers,
+                Following = tempstreamer.Following,
+                Videos = tempstreamer.Videos
+            };
         }
     }
 }

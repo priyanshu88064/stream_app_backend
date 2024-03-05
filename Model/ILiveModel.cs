@@ -6,5 +6,6 @@ namespace Stream_backend.Model
     {
         public void CreateLive(Live live);
         public IEnumerable<Live> GetLive();
+        public void DeleteLive(Guid id);
     }
 }

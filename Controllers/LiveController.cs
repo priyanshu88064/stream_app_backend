@@ -26,13 +26,18 @@ namespace Stream_Backend.Controllers
                 Publisher = data.Publisher,
                 viewers = data.viewers,
                 Title = data.Title,
-                Image = data.Image
+                Image = data.Image,
+                meetingid = data.meetingid
             });
         }
 
         [HttpPost]
         public void CreateLive(CreateLiveDto newLive)
         {
+
+            // to make sure no Live exist before creating a new one
+            StopLive(newLive.Publisher);
+
             Guid liveId = Guid.NewGuid();
 
             streamer.AddLive(liveId,newLive.Publisher);
@@ -44,8 +49,17 @@ namespace Stream_Backend.Controllers
                 Publisher = newLive.Publisher,
                 viewers = rnd.Next(2300,9999),
                 Title = newLive.Title,
-                Image = newLive.Image
+                Image = newLive.Image,
+                meetingid = newLive.meetingid
             });
+        }
+
+        [HttpPost]
+        [Route("stop")]
+        public void StopLive(Guid publisher)
+        {
+            streamer.AddLive(Guid.Empty,publisher);
+            live.DeleteLive(publisher);
         }
     }
 }

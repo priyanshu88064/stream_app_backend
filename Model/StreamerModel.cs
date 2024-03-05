@@ -27,16 +27,19 @@ namespace Stream_backend.Model
             return streamerCollection.Find(res => res.Email==email).FirstOrDefault();
         }
 
-        public string CreateStreamer(Streamer newStreamer)
+        public Streamer CreateStreamer(Streamer newStreamer)
         {
-            if(GetStreamerByEmail(newStreamer.Email)==null)
+
+            Streamer findstreamer = GetStreamerByEmail(newStreamer.Email);
+
+            if(findstreamer==null)
             {
                 streamerCollection.InsertOne(newStreamer);
-                return "Account created successfully";
+                return newStreamer;
             }
             else
             {
-                return "Email already registered";
+                return findstreamer;
             }
         }
 

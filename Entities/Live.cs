@@ -11,5 +11,6 @@ namespace Stream_backend.Entities
         public int viewers {get;set;}
         public string Title {get;set;}
         public string Image {get;set;}
+        public string meetingid {get;set;}
     }
 }
