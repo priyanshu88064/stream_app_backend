@@ -54,8 +54,8 @@ namespace Stream_Backend.Controllers
             });
         }
 
-        [HttpPost]
-        [Route("stop")]
+        [HttpGet]
+        [Route("{publisher}")]
         public void StopLive(Guid publisher)
         {
             streamer.AddLive(Guid.Empty,publisher);
